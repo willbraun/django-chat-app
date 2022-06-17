@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     #local
     'api.apps.ApiConfig',
     'frontend.apps.FrontendConfig',
+    # 'chatmessages.apps.ChatmessagesConfig',
     'rooms.apps.RoomsConfig',
 ]
 
