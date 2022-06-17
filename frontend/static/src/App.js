@@ -1,12 +1,14 @@
-import './App.css';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
 import Chat from './components/Chat';
 import LoggedOut from './components/LoggedOut';
 
 const App = () => {
-  	const [auth, setAuth] = useState(!!Cookies.get('Authorization'));
-	console.log(Cookies.get('Authorization'));
+  	let [auth, setAuth] = useState(!!Cookies.get('Authorization'));
+
+	// testing. change above to const at end
+	auth = true;
+	// testing.
 
 	return (
 		<>
