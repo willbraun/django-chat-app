@@ -3,10 +3,10 @@ from django.conf import settings
 
 
 class Room(models.Model):
-    title = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Message(models.Model):
@@ -16,4 +16,4 @@ class Message(models.Model):
     created_timestamp_UTC = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.creator}, {self.body[:50]}, {self.created_timestamp}"
+        return f"{self.creator}, {self.body[:50]}, {self.created_timestamp_UTC}"

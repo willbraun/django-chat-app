@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Cookies from "js-cookie";
-import { v4 as uuidv4 } from 'uuid';
 import './../styles/chat.css';
 import { handleError } from "../helpers";
 import Room from "./Room";
@@ -13,11 +12,11 @@ import { staticRooms, staticMessages } from '../staticdata';
 const Chat = ({setAuth}) => {
     const [state, setState] = useState({
         rooms: [],
+        selectedRoomIndex: 0,
         messages: [],
     })
     
-    const logOut = async (event) => {
-        event.preventDefault();
+    const logOut = async () => {
         const options = {
             method: 'POST',
             headers: {
@@ -50,31 +49,53 @@ const Chat = ({setAuth}) => {
             throw new Error('Network response was not ok!');
         }
 
-        const data = await response.json()
-        data.forEach(item => item.reactKey = uuidv4());
-        console.log(data);
+        const data = await response.json();
         setState({...state, rooms: data});
     }
 
-    // write get messages function
+    const getMessages = async (id) => {
+        const response = await fetch(`/api_v1/rooms/${id}/messages/`).catch(handleError);
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok!');
+        }
+
+        const data = await response.json();
+        setState({...state, messages: data});
+    }
 
     useEffect(() => {
 		getRooms();
+        getMessages(1);
     }, [])
 
-    // const roomList = state.rooms.map(room => <Room key={room.reactKey} {...room}/>)
-    const staticRoomList = staticRooms.map(room => <Room key={room.reactKey} {...room}/>)
+    if (!state.rooms || !state.messages) {
+        return <div>Loading...</div>
+    }
+
+    const addRoomToState = (newRoom) => {
+        const newList = state.rooms;
+        newList.push(newRoom);
+        setState({...state, rooms: newList});
+    }
+
+    // function to select room by id, change Rooms to buttons and fire
+
+    const roomList = state.rooms.map(room => <Room key={room.id} {...room}/>);
+    // const staticRoomList = staticRooms.map(room => <Room key={room.reactKey} {...room}/>);
+
+    const messageList = state.messages.map(message => <Message key={message.id} {...message}/>);
 
     const sidebar = (
-        <aside>
-            {staticRoomList}
-            <AddRoomForm/>
+        <aside className="sidebar">
+            {roomList}
+            <AddRoomForm addRoomToState={addRoomToState}/>
         </aside>
     )
 
     const main = (
-        <main>
-            <Message/>
+        <main className="room-detail">
+            {messageList}
             <CreateMessage/>
         </main>
     )

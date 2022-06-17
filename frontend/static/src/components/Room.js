@@ -1,9 +1,9 @@
-const Room = ({title}) => {
+const Room = ({name}) => {
 
 
     return (
         <article className="room">
-            {title}
+            <h2>{name}</h2>
         </article>
     )
 }

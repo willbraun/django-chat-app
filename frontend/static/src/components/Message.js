@@ -1,8 +1,12 @@
-const Message = () => {
+const Message = ({creator, body, created_timestamp_UTC}) => {
 
 
     return (
-        <div>Message</div>
+        <article>
+            <h3>{creator}</h3>
+            <p>{body}</p>
+            <time>{created_timestamp_UTC}</time>
+        </article>
     )
 }
 

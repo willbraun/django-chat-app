@@ -10,16 +10,16 @@ const CreateAccount = ({setAuth, setNewAccount}) => {
         password2: '',
     })
 
-    const handleInput = (event) => {
-        const {name, value} = event.target;
+    const handleInput = (e) => {
+        const {name, value} = e.target;
         setState((prevState) => ({
             ...prevState,
             [name]: value,
         }))
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const options = {
             method: 'POST',
             headers: {

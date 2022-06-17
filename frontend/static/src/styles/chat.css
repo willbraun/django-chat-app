@@ -1,6 +1,19 @@
 .chat-header {
     display: flex;
     justify-content: space-between;
-    height: 5rem;
+    height: var(--header-height);
     border-bottom: 1px solid var(--layout-border);
+}
+
+.sidebar {
+    position: absolute;
+    left: 0;
+    width: var(--sidebar-width);
+    height: var(--content-height);
+    border-right: 1px solid var(--layout-border);
+}
+
+.room-detail {
+    position: absolute;
+    left: var(--sidebar-width);
 }
