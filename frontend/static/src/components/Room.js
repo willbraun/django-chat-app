@@ -1,10 +1,9 @@
-const Room = ({name}) => {
-
+const Room = ({id, name, selectRoom}) => {
 
     return (
-        <article className="room">
+        <button className="room" type="button" onClick={() => selectRoom(id)}>
             <h2>{name}</h2>
-        </article>
+        </button>
     )
 }
 

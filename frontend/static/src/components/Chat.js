@@ -12,7 +12,7 @@ import { staticRooms, staticMessages } from '../staticdata';
 const Chat = ({setAuth}) => {
     const [state, setState] = useState({
         rooms: [],
-        selectedRoomIndex: 0,
+        selectedRoom: {},
         messages: [],
     })
     
@@ -50,7 +50,17 @@ const Chat = ({setAuth}) => {
         }
 
         const data = await response.json();
-        setState({...state, rooms: data});
+        const selection = data[0];
+        const messages = await getMessages(selection.id);
+        setState({rooms: data, selectedRoom: selection, messages: messages});
+    }
+
+    useEffect(() => {
+		getRooms();
+    }, [])
+
+    if (!state.rooms) {
+        return <div>Loading rooms...</div>
     }
 
     const getMessages = async (id) => {
@@ -61,16 +71,18 @@ const Chat = ({setAuth}) => {
         }
 
         const data = await response.json();
-        setState({...state, messages: data});
+        return data;
     }
 
-    useEffect(() => {
-		getRooms();
-        getMessages(1);
-    }, [])
+    if (!state.messages) {
+        return <div>Loading messages...</div>
+    }
 
-    if (!state.rooms || !state.messages) {
-        return <div>Loading...</div>
+    const selectRoom = async (id) => {
+        const newList = state.rooms;
+        const index = newList.find(room => room.id === id);
+        const messages = await getMessages(id);
+        setState({...state, selectedRoom: newList[index], messages: messages})
     }
 
     const addRoomToState = (newRoom) => {
@@ -79,11 +91,7 @@ const Chat = ({setAuth}) => {
         setState({...state, rooms: newList});
     }
 
-    // function to select room by id, change Rooms to buttons and fire
-
-    const roomList = state.rooms.map(room => <Room key={room.id} {...room}/>);
-    // const staticRoomList = staticRooms.map(room => <Room key={room.reactKey} {...room}/>);
-
+    const roomList = state.rooms.map(room => <Room key={room.id} {...room} selectRoom={selectRoom}/>);
     const messageList = state.messages.map(message => <Message key={message.id} {...message}/>);
 
     const sidebar = (
