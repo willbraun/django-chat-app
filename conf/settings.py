@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 
     #local
-    'frontend.apps.FrontendConfig'
+    'api.apps.ApiConfig',
+    'frontend.apps.FrontendConfig',
+    'rooms.apps.RoomsConfig',
 ]
 
 MIDDLEWARE = [
