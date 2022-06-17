@@ -9,12 +9,8 @@ class RoomSerializer(serializers.ModelSerializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    creator = serializers.SlugRelatedField(
-        many = False,
-        read_only = True,
-        slug_field = 'username',
-    )
+    author = serializers.ReadOnlyField(source='creator.username')
     
     class Meta:
         model = Message
-        fields = ('id','creator','body','created_timestamp_UTC',)
+        fields = '__all__'
