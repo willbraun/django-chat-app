@@ -9,7 +9,7 @@ const LoggedOut = ({setAuth}) => {
 
 	return (
 		<>
-        {newAccount ? <CreateAccount setAuth={setAuth}/> : <Login setAuth={setAuth} setNewAccount={setNewAccount}/> }
+        {newAccount ? <CreateAccount setAuth={setAuth} setNewAccount={setNewAccount}/> : <Login setAuth={setAuth} setNewAccount={setNewAccount}/> }
         </>
   	);
 }

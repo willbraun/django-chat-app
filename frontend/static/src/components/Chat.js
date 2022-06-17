@@ -23,10 +23,10 @@ const Chat = ({setAuth}) => {
     }
 	
 	return (
-		<>
-        <div>I am the chat</div>
-        <button type="button" onClick={logOut}>Log Out</button>
-        </>
+		<main>
+            <div>I am the chat</div>
+            <button type="button" onClick={logOut}>Log Out</button>
+        </main>
         
         
   	);
