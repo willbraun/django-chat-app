@@ -34,32 +34,19 @@ const Chat = ({setAuth}) => {
         setAuth(false);
     }
 
-    const header = (
-        <header className="chat-header">
-            <h1>GVL Chat</h1>
-            <button type="button" onClick={logOut}>Log Out</button>
-        </header>
-    )
-
-    const getRooms = async () => {
+    const getRooms = async (id = null) => {
         const response = await fetch('/api_v1/rooms/').catch(handleError);
         
         if (!response.ok) {
             throw new Error('Network response was not ok!');
         }
 
+        
         const data = await response.json();
-        const selection = data[0];
+        const index = id ? data.findIndex(room => room.id === id) : 0;
+        const selection = data[index];
         const messages = await getMessages(selection.id);
         setState({rooms: data, selectedRoom: selection, messages: messages});
-    }
-
-    useEffect(() => {
-		getRooms();
-    }, [])
-
-    if (!state.rooms) {
-        return <div>Loading rooms...</div>
     }
 
     const getMessages = async (id) => {
@@ -73,6 +60,17 @@ const Chat = ({setAuth}) => {
         return data;
     }
 
+    useEffect(() => {
+        console.log(state.selectedRoom.id); // why is this the same every time even if I switch views
+        const interval = setInterval(() => getRooms(state.selectedRoom.id), 3000);
+        return () => clearInterval(interval);
+    }, [])
+
+
+    if (!state.rooms) {
+        return <div>Loading rooms...</div>
+    }
+
     if (!state.messages) {
         return <div>Loading messages...</div>
     }
@@ -80,8 +78,9 @@ const Chat = ({setAuth}) => {
     const selectRoom = async (id) => {
         const newList = state.rooms;
         const index = newList.findIndex(room => room.id === id);
+        const selection = newList[index]
         const messages = await getMessages(id);
-        setState({...state, selectedRoom: newList[index], messages: messages})
+        setState({...state, selectedRoom: selection, messages: messages})
     }
 
     const addRoomToState = (newRoom) => {
@@ -112,26 +111,21 @@ const Chat = ({setAuth}) => {
 
     const roomList = state.rooms.map(room => <Room key={room.id} {...room} selectRoom={selectRoom}/>);
     const messageList = state.messages.map(message => <Message key={message.id} {...message} editMessageOnState={editMessageOnState} deleteMessageFromState={deleteMessageFromState}/>);
-
-    const sidebar = (
-        <aside className="sidebar">
-            {roomList}
-            <AddRoomForm addRoomToState={addRoomToState}/>
-        </aside>
-    )
-
-    const main = (
-        <main className="room-detail">
-            {messageList}
-            <CreateMessage selectedRoom={state.selectedRoom} addMessageToState={addMessageToState}/>
-        </main>
-    )
 	
 	return (
         <>
-            {header}
-            {sidebar}
-            {main}
+            <header className="chat-header">
+                <h1>GVL Chat</h1>
+                <button type="button" onClick={logOut}>Log Out</button>
+            </header>
+            <aside className="sidebar">
+                {roomList}
+                <AddRoomForm addRoomToState={addRoomToState}/>
+            </aside>
+            <main className="room-detail">
+                {messageList}
+                <CreateMessage selectedRoom={state.selectedRoom} addMessageToState={addMessageToState}/>
+            </main>
         </>
   	);
 }

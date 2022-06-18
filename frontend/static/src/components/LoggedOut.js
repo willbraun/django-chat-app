@@ -4,8 +4,6 @@ import Login from './Login';
 
 const LoggedOut = ({setAuth}) => {
   	const [newAccount, setNewAccount] = useState(false);
-	
-
 
 	return (
 		<>
