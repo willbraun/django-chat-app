@@ -1,5 +1,6 @@
 .add-room-section {
-    height: var(--bottom-height);
+    min-height: var(--bottom-height);
+    max-height: var(--bottom-height);
     width: 100%;
     border-top: 1px solid var(--layout-border);
 }

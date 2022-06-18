@@ -1,0 +1,16 @@
+.message {
+    position: relative;
+    background-color: pink;
+    margin: 2rem;
+}
+
+.message h3, .message time {
+    display: inline-block;
+    margin: 0;
+}
+
+.message time {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

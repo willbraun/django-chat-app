@@ -1,6 +1,7 @@
 .create-message {
     border-top: 1px solid var(--layout-border);
-    height: var(--bottom-height);
+    min-height: var(--bottom-height);
+    max-height: var(--bottom-height);
     width: 100%;    
 }
 

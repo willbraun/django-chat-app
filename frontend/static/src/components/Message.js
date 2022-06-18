@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { handleError } from '../helpers';
+import './../styles/message.css';
 
 const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnState, deleteMessageFromState}) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -58,7 +59,7 @@ const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnSt
     }
 
     const previewHTML = (
-        <article>
+        <article className="message">
             <h3>{author}</h3>
             <time>{created_timestamp_UTC}</time>
             <p>{body}</p>
@@ -68,7 +69,7 @@ const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnSt
     )
 
     const editHTML = (
-        <article>
+        <article className="message">
             <h3>{author}</h3>
             <time>{created_timestamp_UTC}</time>
             <form onSubmit={handleSubmit}>
