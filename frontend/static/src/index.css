@@ -4,12 +4,16 @@
 	--sub-header-height: 3rem;
 	--content-height: calc(100vh - var(--header-height));
 	--sidebar-width: 20rem;
+	--bottom-height: 7rem;
 	--roman-silver: #7D8491;
 	--alabaster: #F2EFE4;
 	--green-pantone: #18B447;
 	--forest-green-web: #138A36;
 	--pine-tree: #30321C;
 	--nyanza: #E4FDE1;
+	--body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+	sans-serif;
 }
 
 * {
@@ -18,9 +22,7 @@
 
 body {
   	margin: 0;
-  	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    	sans-serif;
+  	font-family: var(--body-font);
   	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
 }

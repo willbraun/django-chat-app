@@ -30,8 +30,8 @@
 }
 
 .sidebar h2 {
-    text-align: center;
-    margin: 0;
+    text-align: left;
+    margin: 0 0 0 1rem;
     padding: 0.5rem 0;
 }
 
@@ -47,7 +47,15 @@
 
 .room-detail {
     position: absolute;
+    height: var(--content-height);
     width: calc(100% - var(--sidebar-width));
     left: var(--sidebar-width);
     background-color: var(--alabaster);
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-display {
+    overflow: auto;
+    flex-grow: 1;
 }

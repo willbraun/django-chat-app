@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { handleError } from '../helpers';
+import './../styles/createmessage.css';
 
 const CreateMessage = ({selectedRoom, addMessageToState}) => {
     const [state, setState] = useState({
@@ -40,9 +41,9 @@ const CreateMessage = ({selectedRoom, addMessageToState}) => {
 
 
     return (
-        <section>
-            <form onSubmit={handleSubmit}>
-                <input 
+        <section className="create-message">
+            <form className="create-message-form" onSubmit={handleSubmit}>
+                <textarea
                     name="body" 
                     value={state.body} 
                     type="text" 
@@ -50,7 +51,8 @@ const CreateMessage = ({selectedRoom, addMessageToState}) => {
                     placeholder="New message..."
                     required 
                     onChange={handleInput}
-                />
+                >
+                </textarea> 
                 <button type="submit">Send</button>
             </form>
         </section>
