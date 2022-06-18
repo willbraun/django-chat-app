@@ -6,7 +6,6 @@ import Room from "./Room";
 import AddRoomForm from "./AddRoomForm";
 import Message from "./Message";
 import CreateMessage from "./CreateMessage";
-import { staticRooms, staticMessages } from '../staticdata';
 
 
 const Chat = ({setAuth}) => {
@@ -91,6 +90,12 @@ const Chat = ({setAuth}) => {
         setState({...state, rooms: newList});
     }
 
+    const addMessageToState = (newMessage) => {
+        const newList = state.messages;
+        newList.push(newMessage);
+        setState({...state, messages: newList});
+    }
+
     const roomList = state.rooms.map(room => <Room key={room.id} {...room} selectRoom={selectRoom}/>);
     const messageList = state.messages.map(message => <Message key={message.id} {...message}/>);
 
@@ -104,7 +109,7 @@ const Chat = ({setAuth}) => {
     const main = (
         <main className="room-detail">
             {messageList}
-            <CreateMessage/>
+            <CreateMessage selectedRoom={state.selectedRoom} addMessageToState={addMessageToState}/>
         </main>
     )
 	

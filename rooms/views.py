@@ -16,6 +16,9 @@ class MessageListCreateAPIView(generics.ListCreateAPIView):
         room = self.kwargs['room']
         return Message.objects.filter(room=room)
 
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
+
 
 class MessageDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Message.objects.all()
