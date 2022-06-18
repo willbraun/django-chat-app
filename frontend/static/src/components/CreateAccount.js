@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Cookies from "js-cookie";
 import { handleError } from "../helpers";
+import './../styles/createaccount.css';
 
 const CreateAccount = ({setAuth, setNewAccount}) => {
     const [state, setState] = useState({
@@ -41,8 +42,9 @@ const CreateAccount = ({setAuth, setNewAccount}) => {
     }
   
     return (
-        <main>
-            <h1>Create Account</h1>
+        <main className="create-account-box">
+            <h1>GVL Chat</h1>
+            <h2>Create Account</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label> 
                 <input 

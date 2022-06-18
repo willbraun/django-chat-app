@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { handleError } from './../helpers';
+import './../styles/login.css';
 
 const Login = ({setAuth, setNewAccount}) => {
     const [state, setState] = useState({
@@ -39,35 +40,36 @@ const Login = ({setAuth, setNewAccount}) => {
     }
   
     return (
-        <main>
-            <h1>Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username</label>
-                    <input 
-                        name="username" 
-                        value={state.username} 
-                        type="text" 
-                        id="username" 
-                        required 
-                        onChange={handleInput}/>
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input 
-                        name="password" 
-                        value={state.password} 
-                        type="password" 
-                        id="password" 
-                        required 
-                        onChange={handleInput}/>
-                </div>
-                <button type="submit">Log In</button>
-                
-            </form>
-            <p>Don't have an account? Click below to create one.</p>
-            <button type="button" onClick={() => setNewAccount(true)}>Create Account</button>
-        </main>
+        <div className="auth-background">
+            <main className="login-box">
+                <h1>GVL Chat</h1>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="username">Username</label>
+                        <input 
+                            name="username" 
+                            value={state.username} 
+                            type="text" 
+                            id="username" 
+                            required 
+                            onChange={handleInput}/>
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input 
+                            name="password" 
+                            value={state.password} 
+                            type="password" 
+                            id="password" 
+                            required 
+                            onChange={handleInput}/>
+                    </div>
+                    <button type="submit">Log In</button>
+                    
+                </form>
+                <p>Don't have an account? Click <span className="create-account-link" onClick={() => setNewAccount(true)}>here</span> to create one.</p>
+            </main>
+        </div>
         
     );
 }
