@@ -1,8 +1,21 @@
 .chat-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: var(--header-height);
     border-bottom: 1px solid var(--layout-border);
+}
+
+.chat-header > h1 {
+    margin-left: 2rem;
+}
+
+.logout-button {
+    background-color: transparent;
+    border: none;
+    height: fit-content;
+    margin-right: 2rem;
+    font-size: 1.5rem;
 }
 
 .sidebar {
@@ -11,9 +24,30 @@
     width: var(--sidebar-width);
     height: var(--content-height);
     border-right: 1px solid var(--layout-border);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--nyanza);
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.rooms-subheader {
+    display: block;
+    width: 100%;
+}
+
+.rooms-display {
+    overflow: auto;
+    flex-grow: 1;
 }
 
 .room-detail {
     position: absolute;
+    width: calc(100% - var(--sidebar-width));
     left: var(--sidebar-width);
+    background-color: var(--alabaster);
 }

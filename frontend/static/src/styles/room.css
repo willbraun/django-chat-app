@@ -1,0 +1,12 @@
+.room {
+    display: block;
+    width: fit-content;
+    max-width: 90%;
+    margin-left: 10%;
+    border: none;
+    background-color: var(--nyanza);
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    text-align: left;
+    word-wrap: break-word;
+}

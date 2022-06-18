@@ -1,8 +1,15 @@
 :root {
 	--layout-border: #ccc;
 	--header-height: 5rem;
+	--sub-header-height: 3rem;
 	--content-height: calc(100vh - var(--header-height));
 	--sidebar-width: 20rem;
+	--roman-silver: #7D8491;
+	--alabaster: #F2EFE4;
+	--green-pantone: #18B447;
+	--forest-green-web: #138A36;
+	--pine-tree: #30321C;
+	--nyanza: #E4FDE1;
 }
 
 * {
@@ -21,4 +28,8 @@ body {
 code {
   	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     	monospace;
+}
+
+button {
+	cursor: pointer;
 }

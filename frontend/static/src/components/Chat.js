@@ -61,9 +61,11 @@ const Chat = ({setAuth}) => {
     }
 
     useEffect(() => {
+        getRooms();
+        
         console.log(state.selectedRoom.id); // why is this the same every time even if I switch views
-        const interval = setInterval(() => getRooms(state.selectedRoom.id), 3000);
-        return () => clearInterval(interval);
+        // const interval = setInterval(() => getRooms(state.selectedRoom.id), 3000);
+        // return () => clearInterval(interval);
     }, [])
 
 
@@ -116,14 +118,19 @@ const Chat = ({setAuth}) => {
         <>
             <header className="chat-header">
                 <h1>GVL Chat</h1>
-                <button type="button" onClick={logOut}>Log Out</button>
+                <button type="button" class="logout-button" onClick={logOut}>Log Out</button>
             </header>
             <aside className="sidebar">
-                {roomList}
+                <h2 className="rooms-subheader">Rooms</h2>
+                <section className="rooms-display">
+                    {roomList}
+                </section>
                 <AddRoomForm addRoomToState={addRoomToState}/>
             </aside>
             <main className="room-detail">
-                {messageList}
+                <section className="messages-display">
+                    {messageList}
+                </section> 
                 <CreateMessage selectedRoom={state.selectedRoom} addMessageToState={addMessageToState}/>
             </main>
         </>

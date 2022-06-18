@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { handleError } from "../helpers";
+import './../styles/addroomform.css';
 
 const AddRoomForm = ({addRoomToState}) => {
     const blank = { name: '', };
@@ -38,18 +39,23 @@ const AddRoomForm = ({addRoomToState}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="room-name">Room Name</label> 
-                <input 
-                    name="room-name" 
-                    value={state.name}
-                    type="text" 
-                    id="room-name" 
-                    required 
-                    onChange={handleInput}
-                />
-            <button>+ Add Room</button>
-        </form>
+        <section className="add-room-section">
+            <h2>Create New Room</h2>
+            <form class="add-room-form" onSubmit={handleSubmit}>
+                <label htmlFor="room-name"></label> 
+                    <input 
+                        name="room-name" 
+                        value={state.name}
+                        type="text" 
+                        id="room-name" 
+                        placeholder="Enter room name..."
+                        required 
+                        onChange={handleInput}
+                    />
+                <button>+ New Room</button>
+            </form>
+        </section>
+        
     )
 }
 
