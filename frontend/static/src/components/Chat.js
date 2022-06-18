@@ -128,6 +128,9 @@ const Chat = ({setAuth}) => {
                 <AddRoomForm addRoomToState={addRoomToState}/>
             </aside>
             <main className="room-detail">
+                <div className="selected-room-name">
+                    {state.selectedRoom.name}
+                </div>
                 <section className="messages-display">
                     {messageList}
                 </section> 

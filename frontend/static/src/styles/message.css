@@ -1,16 +1,49 @@
 .message {
     position: relative;
-    background-color: pink;
     margin: 2rem;
+    border: 1px solid var(--layout-border);
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--lavender-web);
 }
 
-.message h3, .message time {
-    display: inline-block;
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-row > * {
     margin: 0;
 }
 
 .message time {
-    position: absolute;
-    top: 0;
-    right: 0;
+    flex-grow: 1;
+    margin-left: 2rem;
+    font-size: 0.8rem;
+    color: var(--roman-silver);
+}
+
+.message button {
+    background-color: transparent;
+    border: none;
+    margin-left: 1rem;
+    font-weight: 700;
+}
+
+.message img {
+    width: 1rem;
+}
+
+.message form {
+    position: relative;
+}
+
+.message textarea {
+    outline: none;
+    height: fit-content;
+    width: calc(100% - 2rem);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    margin-top: 1rem;
 }

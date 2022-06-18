@@ -2,6 +2,9 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { handleError } from '../helpers';
 import './../styles/message.css';
+import { format } from 'date-fns';
+import editIcon from './../images/pen-to-square-solid.svg';
+import deleteIcon from './../images/trash-solid.svg';
 
 const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnState, deleteMessageFromState}) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -58,22 +61,39 @@ const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnSt
         setIsEditing(false);
     }
 
+    const formatDate = (date) => {
+        const thisDate = new Date(date);
+        return format(thisDate, 'h:mm a, M/d/yyyy');
+    }
+
+    const formattedTimestamp = formatDate(created_timestamp_UTC);
+
     const previewHTML = (
         <article className="message">
-            <h3>{author}</h3>
-            <time>{created_timestamp_UTC}</time>
+            <div className="top-row">
+                <h3>{author}</h3>
+                <time>{formattedTimestamp}</time>
+                <button type="button" className="edit-button" onClick={() => setIsEditing(true)}>
+                    <img src={editIcon} alt="pencil icon" />
+                </button>
+                <button type="button" className="delete-button" onClick={() => deleteMessage()}>
+                    <img src={deleteIcon} alt="trash icon" />
+                </button>
+            </div>
             <p>{body}</p>
-            <button type="button" onClick={() => setIsEditing(true)}>Edit</button>
-            <button type="button" onClick={() => deleteMessage()}>Delete</button>
         </article>
     )
 
     const editHTML = (
         <article className="message">
-            <h3>{author}</h3>
-            <time>{created_timestamp_UTC}</time>
+            <div className="top-row">
+                <h3>{author}</h3>
+                <time>{formattedTimestamp}</time>
+                <button type="button" className="cancel-button" onClick={() => setIsEditing(false)}>Cancel</button>
+                <button type="submit" className="save-button" >Save</button>
+            </div>
             <form onSubmit={handleSubmit}>
-                <input 
+                <textarea 
                     name="body" 
                     value={state.body} 
                     type="text" 
@@ -81,11 +101,8 @@ const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnSt
                     placeholder="Edit message..."
                     required 
                     onChange={handleInput}
-                />
-                <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
-                <button type="submit">Save</button>
+                ></textarea>
             </form>
-            
         </article>
     )
 

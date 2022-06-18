@@ -15,7 +15,7 @@
     border: none;
     height: fit-content;
     margin-right: 2rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .sidebar {
@@ -53,6 +53,13 @@
     background-color: var(--alabaster);
     display: flex;
     flex-direction: column;
+}
+
+.selected-room-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--layout-border);
+    padding: 0.5rem 2rem;
 }
 
 .messages-display {

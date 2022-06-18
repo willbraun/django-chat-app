@@ -2,7 +2,8 @@
     border-top: 1px solid var(--layout-border);
     min-height: var(--bottom-height);
     max-height: var(--bottom-height);
-    width: 100%;    
+    width: 100%;  
+    background-color: #fff;  
 }
 
 .create-message form {
@@ -12,7 +13,6 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
-
 }
 
 .create-message #body {
@@ -20,6 +20,7 @@
     background-color: transparent;
     border: none;
     flex-grow: 1;
+    font-size: 1rem;
 }
 
 .create-message #body:focus {
