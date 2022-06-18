@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { handleError } from '../helpers';
 
-const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnState}) => {
+const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnState, deleteMessageFromState}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [state, setState] = useState ({
         id,
@@ -24,13 +24,31 @@ const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnSt
             body: JSON.stringify(editedMessage),
         }
 
-        const response = await fetch(`/api_v1/rooms/${editedMessage.room}/messages/${id}`, options).catch(handleError);
+        const response = await fetch(`/api_v1/rooms/${room}/messages/${id}/`, options).catch(handleError);
 
         if(!response.ok) {
             throw new Error('Network response was not ok!');
         }
 
         editMessageOnState(editedMessage);
+    }
+
+    const deleteMessage = async () => {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
+            },
+        }
+
+        const response = await fetch(`/api_v1/rooms/${room}/messages/${id}/`, options).catch(handleError);
+
+        if(!response.ok) {
+            throw new Error('Network response was not ok!');
+        }
+
+        deleteMessageFromState(id)
     }
 
     const handleSubmit = (e) => {
@@ -45,7 +63,7 @@ const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnSt
             <time>{created_timestamp_UTC}</time>
             <p>{body}</p>
             <button type="button" onClick={() => setIsEditing(true)}>Edit</button>
-            <button type="button">Delete</button>
+            <button type="button" onClick={() => deleteMessage()}>Delete</button>
         </article>
     )
 
@@ -53,7 +71,6 @@ const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnSt
         <article>
             <h3>{author}</h3>
             <time>{created_timestamp_UTC}</time>
-            
             <form onSubmit={handleSubmit}>
                 <input 
                     name="body" 

@@ -103,8 +103,15 @@ const Chat = ({setAuth}) => {
         setState({...state, messages: newList});
     }
 
+    const deleteMessageFromState = (id) => {
+        const newList = state.messages;
+        const index = newList.findIndex(message => message.id === id);
+        newList.splice(index, 1);
+        setState({...state, messages: newList});
+    }
+
     const roomList = state.rooms.map(room => <Room key={room.id} {...room} selectRoom={selectRoom}/>);
-    const messageList = state.messages.map(message => <Message key={message.id} {...message} editMessageOnState={editMessageOnState}/>);
+    const messageList = state.messages.map(message => <Message key={message.id} {...message} editMessageOnState={editMessageOnState} deleteMessageFromState={deleteMessageFromState}/>);
 
     const sidebar = (
         <aside className="sidebar">
