@@ -43,6 +43,7 @@ const Login = ({setAuth, setNewAccount}) => {
         <div className="auth-background">
             <main className="login-box">
                 <h1>GVL Chat</h1>
+                <h2>Log In</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="username">Username</label>

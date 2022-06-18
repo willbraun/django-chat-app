@@ -1,0 +1,53 @@
+.create-account-box {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    margin: auto;
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    border: 1px solid var(--layout-border);
+    background-color: var(--lavender-web);
+}
+
+.create-account-box h1 {
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+.create-account-box form {
+    width: 100%;
+    margin: auto;
+}
+
+.create-account-box form label {
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.create-account-box form input {
+    width: 100%;
+    margin-bottom: 1rem;
+    height: 1.5rem;
+    outline: none;
+}
+
+.create-account-button {
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+    border: none;
+    border-radius: 500px;
+    padding: 0.4rem 1rem;
+    background-color: var(--pine-tree);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.back-to-login {
+    background: transparent;
+    border: none;
+}

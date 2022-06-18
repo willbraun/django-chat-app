@@ -24,6 +24,7 @@
 
 .login-box form label {
     display: block;
+    margin-bottom: 0.2rem;
 }
 
 .login-box form input {
