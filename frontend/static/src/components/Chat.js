@@ -79,7 +79,7 @@ const Chat = ({setAuth}) => {
 
     const selectRoom = async (id) => {
         const newList = state.rooms;
-        const index = newList.find(room => room.id === id);
+        const index = newList.findIndex(room => room.id === id);
         const messages = await getMessages(id);
         setState({...state, selectedRoom: newList[index], messages: messages})
     }
@@ -96,8 +96,15 @@ const Chat = ({setAuth}) => {
         setState({...state, messages: newList});
     }
 
+    const editMessageOnState = (editedMessage) => {
+        const newList = state.messages;
+        const index = newList.findIndex(message => message.id === editedMessage.id);
+        newList[index] = {...newList[index], body: editedMessage.body};
+        setState({...state, messages: newList});
+    }
+
     const roomList = state.rooms.map(room => <Room key={room.id} {...room} selectRoom={selectRoom}/>);
-    const messageList = state.messages.map(message => <Message key={message.id} {...message}/>);
+    const messageList = state.messages.map(message => <Message key={message.id} {...message} editMessageOnState={editMessageOnState}/>);
 
     const sidebar = (
         <aside className="sidebar">

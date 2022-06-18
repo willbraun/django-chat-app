@@ -9,7 +9,7 @@ const CreateMessage = ({selectedRoom, addMessageToState}) => {
     });
 
     const handleInput = (e) => {
-        setState({...state, body: e.target.value})
+        setState({...state, body: e.target.value});
     }
 
     const sendMessage = async (newMessage) => {
