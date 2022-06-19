@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { handleError } from '../helpers';
+import { handleError, scrollToBottomMessage } from '../helpers';
 import './../styles/message.css';
 import { format } from 'date-fns';
 import editIcon from './../images/pen-to-square-solid.svg';
@@ -13,6 +13,10 @@ const Message = ({id, author, room, body, created_timestamp_UTC, editMessageOnSt
         room,
         body,
     })
+
+    useEffect(() => {
+        scrollToBottomMessage();
+    },[])
 
     const handleInput = (e) => {
         setState({...state, body: e.target.value});

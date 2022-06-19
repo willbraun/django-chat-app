@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { handleError } from "../helpers";
 import './../styles/addroomform.css';
 
-const AddRoomForm = ({addRoomToState}) => {
+const AddRoomForm = ({addRoomToState, selectRoom}) => {
     const blank = { name: '', };
     
     const [state, setState] = useState(blank)
@@ -30,6 +30,7 @@ const AddRoomForm = ({addRoomToState}) => {
 
         const data = await response.json();
         addRoomToState(data);
+        selectRoom(data.id)
     }
 
     const handleSubmit = async (e) => {

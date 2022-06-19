@@ -40,7 +40,6 @@ const Chat = ({setAuth}) => {
         if (!response.ok) {
             throw new Error('Network response was not ok!');
         }
-
         
         const data = await response.json();
         const index = id ? data.findIndex(room => room.id === id) : 0;
@@ -113,7 +112,10 @@ const Chat = ({setAuth}) => {
 
     const roomList = state.rooms.map(room => <Room key={room.id} {...room} selectRoom={selectRoom}/>);
     const messageList = state.messages.map(message => <Message key={message.id} {...message} editMessageOnState={editMessageOnState} deleteMessageFromState={deleteMessageFromState}/>);
-	
+	const noMessages = (<p className="no-messages">No messages in this room yet. Send one!</p>);
+
+    messageList.push(<div className="scroll-bottom" key="0.5"></div>);
+
 	return (
         <>
             <header className="chat-header">
@@ -125,14 +127,14 @@ const Chat = ({setAuth}) => {
                 <section className="rooms-display">
                     {roomList}
                 </section>
-                <AddRoomForm addRoomToState={addRoomToState}/>
+                <AddRoomForm addRoomToState={addRoomToState} selectRoom={selectRoom}/>
             </aside>
             <main className="room-detail">
                 <div className="selected-room-name">
                     {state.selectedRoom.name}
                 </div>
                 <section className="messages-display">
-                    {messageList}
+                    {messageList.length > 0 ? messageList : noMessages}
                 </section> 
                 <CreateMessage selectedRoom={state.selectedRoom} addMessageToState={addMessageToState}/>
             </main>

@@ -4,6 +4,7 @@
     align-items: center;
     height: var(--header-height);
     border-bottom: 1px solid var(--layout-border);
+    background-color: var(--light-cyan);
 }
 
 .chat-header > h1 {
@@ -65,4 +66,10 @@
 .messages-display {
     overflow: auto;
     flex-grow: 1;
+    transition: 0.3s;
+}
+
+.no-messages {
+    color: var(--roman-silver);
+    text-align: center;
 }
