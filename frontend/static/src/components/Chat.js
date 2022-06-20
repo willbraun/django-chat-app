@@ -79,7 +79,7 @@ const Chat = ({setAuth}) => {
     const selectRoom = async (id) => {
         const newList = state.rooms;
         const index = newList.findIndex(room => room.id === id);
-        const selection = newList[index]
+        const selection = newList[index];
         const messages = await getMessages(id);
         setState({...state, selectedRoom: selection, messages: messages})
     }

@@ -4,6 +4,7 @@ import { handleError } from './../helpers';
 import './../styles/login.css';
 
 const Login = ({setAuth, setNewAccount}) => {
+    const [showError, setShowError] = useState(false);
     const [state, setState] = useState({
         username: '',
         password: '',
@@ -31,9 +32,11 @@ const Login = ({setAuth, setNewAccount}) => {
         const response = await fetch("/dj-rest-auth/login/", options).catch(handleError);
 
         if (!response.ok) {
+            setShowError(true);
             throw new Error('Network response not ok!');
         }
 
+        console.log(response);
         const data = await response.json();
         Cookies.set("Authorization", `Token ${data.key}`);
         setAuth(true);
@@ -66,7 +69,7 @@ const Login = ({setAuth, setNewAccount}) => {
                             onChange={handleInput}/>
                     </div>
                     <button type="submit">Log In</button>
-                    
+                    <p className={showError ? "login-error show" : "login-error"}>Login failed. Please check your credentials.</p>
                 </form>
                 <p>Don't have an account? Click <span className="create-account-link" onClick={() => setNewAccount(true)}>here</span> to create one.</p>
             </main>

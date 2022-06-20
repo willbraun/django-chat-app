@@ -52,6 +52,16 @@
     margin: 2rem 0 0 0;
 }
 
+.login-error {
+    display: none;
+}
+
+.show {
+    display: block;
+    color: #f00;
+    text-align: center;
+}
+
 .create-account-link {
     cursor: pointer;
     text-decoration: underline;
