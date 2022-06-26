@@ -36,7 +36,6 @@ const Login = ({setAuth, setNewAccount}) => {
             throw new Error('Network response not ok!');
         }
 
-        console.log(response);
         const data = await response.json();
         Cookies.set("Authorization", `Token ${data.key}`);
         setAuth(true);

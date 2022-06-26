@@ -60,13 +60,15 @@ const Chat = ({setAuth}) => {
     }
 
     useEffect(() => {
-        getRooms();
-        
-        console.log(state.selectedRoom.id); // why is this the same every time even if I switch views
-        // const interval = setInterval(() => getRooms(state.selectedRoom.id), 3000);
-        // return () => clearInterval(interval);
-    }, [])
+        getRooms(state.selectedRoom.id);
+    },[]);
 
+    useEffect(() => {
+        const interval = setInterval(() => getRooms(state.selectedRoom.id), 3000);
+
+        return () => { clearInterval(interval) };
+    }, [state.selectedRoom]);
+    
 
     if (!state.rooms) {
         return <div>Loading rooms...</div>
@@ -120,7 +122,7 @@ const Chat = ({setAuth}) => {
         <>
             <header className="chat-header">
                 <h1>GVL Chat</h1>
-                <button type="button" class="logout-button" onClick={logOut}>Log Out</button>
+                <button type="button" className="logout-button" onClick={logOut}>Log Out</button>
             </header>
             <aside className="sidebar">
                 <h2 className="rooms-subheader">Rooms</h2>

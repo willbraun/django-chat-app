@@ -42,7 +42,7 @@ const AddRoomForm = ({addRoomToState, selectRoom}) => {
     return (
         <section className="add-room-section">
             <h2>Create New Room</h2>
-            <form class="add-room-form" onSubmit={handleSubmit}>
+            <form className="add-room-form" onSubmit={handleSubmit}>
                 <label htmlFor="room-name"></label> 
                     <input 
                         name="room-name" 
