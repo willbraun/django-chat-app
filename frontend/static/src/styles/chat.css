@@ -54,6 +54,7 @@
     background-color: var(--alabaster);
     display: flex;
     flex-direction: column;
+    min-width: 25rem;
 }
 
 .selected-room-name {
@@ -72,4 +73,14 @@
 .no-messages {
     color: var(--roman-silver);
     text-align: center;
+}
+
+.caret-button {
+    background-color: transparent;
+    border: none;
+    height: 70%
+}
+
+.caret-icon {
+	height: 100%;
 }
