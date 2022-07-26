@@ -2,6 +2,8 @@
 
 This is a messaging app where users can communicate with each other in chat rooms. I made it themed around Greenville, SC, where I currently live.
 
+See app here - https://django-chat-app-will.herokuapp.com/
+
 # Features
 
 - User registration and authorization
